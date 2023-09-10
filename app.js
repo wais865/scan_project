@@ -11,7 +11,7 @@ var indexRouter = require('./routes');
 var usersRouter = require('./routes/users');
 
 var app = express();
-const connectDB();
+connectDB();
 
 // view engine setup
 app.use(expressLayouts);
