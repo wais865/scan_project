@@ -9,3 +9,7 @@ const usersSchema = new Schema({
     occupation:String,
     accessLevel:Number,
 })
+
+const usersCollection = mongoose.model('users',usersSchema);
+
+module.exports = usersCollection;

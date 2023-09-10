@@ -4,6 +4,7 @@ const expressLayouts = require('express-ejs-layouts');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const dotenv = require('dotenv');
 
 const connectDB = require('./configs/db');
 
@@ -11,6 +12,7 @@ var indexRouter = require('./routes');
 var usersRouter = require('./routes/users');
 
 var app = express();
+dotenv.config({path:"./configs/config.env"});
 connectDB();
 
 // view engine setup
@@ -26,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
