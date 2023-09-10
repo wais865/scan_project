@@ -5,10 +5,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const connectDB = require('./configs/db');
+
 var indexRouter = require('./routes');
 var usersRouter = require('./routes/users');
 
 var app = express();
+const connectDB();
 
 // view engine setup
 app.use(expressLayouts);

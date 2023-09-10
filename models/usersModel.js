@@ -8,5 +8,4 @@ const usersSchema = new Schema({
     fatherName:String,
     occupation:String,
     accessLevel:Number,
-    
 })
