@@ -1,3 +1,108 @@
+<form class="form-horizontal" action="#">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">ریاست منابع بشری<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse" class=""></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= description %></p>
+        <div class="panel-body" style="display: block;">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <fieldset>
+                        <legend class="text-semibold"><i class="icon-truck position-left"></i><b>مشخصات سند</b></legend>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">name:</label>
+                            <div class="col-md-3">
+                                <input type="text" placeholder="First name" class="form-control">
+                            </div>
+                            
+                            <label class="col-md-1 control-label">Father/N:</label>
+                            <div class="col-md-3">
+                                <input type="text" placeholder="father name" class="form-control">
+                            </div>
+                            <label class="col-md-1 control-label">Document/No:</label>
+                            <div class="col-md-3">
+                                <input type="number" placeholder="Document number" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Date:</label>
+                            <div class="col-lg-3">
+                                <input type="date" placeholder="26-2-1445" class="form-control">
+                            </div>
+                            
+                            <div class="btn-group bootstrap-select dropup col-md-3" ><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="Alaska" aria-expanded="false"><span class="filter-option pull-left">Alaska</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox" style="max-height: 200.688px; overflow: hidden; min-height: 126px;"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 184.688px; overflow-y: auto; min-height: 110px;"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">Alaska</span><span class=" icon-checkmark3 check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Hawaii</span><span class=" icon-checkmark3 check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">California</span><span class=" icon-checkmark3 check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Nevada</span><span class=" icon-checkmark3 check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Oregon</span><span class=" icon-checkmark3 check-mark"></span></a></li></ul></div><select class="bootstrap-select" data-width="100%" tabindex="-98">
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                            </select></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Phone #:</label>
+                            <div class="col-lg-9">
+                                <input type="text" placeholder="+99-99-9999-9999" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Location:</label>
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-15">
+                                            <select data-placeholder="Select your country" class="select select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                                <option></option>
+                                                <option value="1">Canada</option> 
+                                                <option value="2">USA</option> 
+                                                <option value="3">Australia</option> 
+                                                <option value="4">Germany</option> 
+                                            </select><span class="select2 select2-container select2-container--default" dir="rtl" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-9td5-container"><span class="select2-selection__rendered" id="select2-9td5-container"><span class="select2-selection__placeholder">Select your country</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+
+                                        <input type="text" placeholder="ZIP code" class="form-control">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <input type="text" placeholder="State/Province" class="form-control mb-15">
+                                        <input type="text" placeholder="City" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Address:</label>
+                            <div class="col-lg-9">
+                                <input type="text" placeholder="Your address of living" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Additional message:</label>
+                            <div class="col-lg-9">
+                                <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Submit form <i class="icon-arrow-left13 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</form>
