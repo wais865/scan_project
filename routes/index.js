@@ -7,6 +7,6 @@ const controller = require('../controllers/indexController');
 router.get('/index', controller.indexFiles);
 
 /* GET /dashboard dashboard page. */
-router.get('/', controller.dashboardFiles);
+router.get('/dashboard', controller.dashboardFiles);
 
 module.exports = router;
