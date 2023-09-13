@@ -1,21 +1,24 @@
 {
   "name": "scan_project",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "scanner project",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "test": "start"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wais865/scan_project.git"
+  },
+  "author": "Wais Alizada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wais865/scan_project/issues"
+  },
+  "homepage": "https://github.com/wais865/scan_project#readme",
   "dependencies": {
-    "bootstrap": "^5.3.1",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "dotenv": "^16.3.1",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "express-ejs-layouts": "^2.5.1",
-    "http-errors": "~1.6.3",
-    "mongodb": "^6.0.0",
-    "mongoose": "^7.5.0",
-    "morgan": "~1.9.1"
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1"
   }
 }
