@@ -1,13 +1,42 @@
-
-
 <!-- Content area -->
 <div class="content container pt-0">
-    <form action=""></form>
-    
+  <form action="">
+    <div class="input-group d-flex">
+        <label class="input-group-text" for="inputGroupSelect01">نوعیت اسناد</label>
+        <select class="form-select" id="inputGroupSelect01">
+            <span class="input-group-text">نوعیت فایل</span>
+            <option selected>انتخاب...</option>
+            <option value="1">پیشنهاد</option>
+            <option value="2">مکتوب</option>
+            <option value="3">P2</option>
+        </select>
+        <label for="command_number" class="input-group-text">نمبر حکم</label>
+        <input type="number" step="100" id="command_number" class="form-control"/>
+        <label for="command_number" class="input-group-text">تاریخ حکم</label>
+        <input type="date" id="command_date" class="form-control"/>
+        <input type="file" class="form-control" style="width: 130px;" value="" onfocus="getValue()" id="doc">
+    </div>
 
+    <div class="input-group mt-2">
+        <label for="name" class="input-group-text">نام</label>
+        <input type="text" aria-label="Last name" class="form-control" />
+        <label for="father_name" class="input-group-text">نام پدر</label>
+        <input type="text" id="father_name" class="form-control" />
+        <label for="father_name" class="input-group-text"></label>
+        <input type="text" id="Last name" class="form-control" />
+    </div>
+  </form>
 </div>
-<!-- /content area -->
 
+<script>
+    function getValue() {
+        let command_number = document.getElementById("command_number").innerText;
+        let command_date = document.getElementById("command_date").innerText;
+        let doc = command_number.concat("-",command_date);
+        document.getElementById("doc").innerHTML = doc;
+    }
+</script>
+<!-- /content area -->
 
 <!-- <form class="form-horizontal" action="#">
     <div class="panel panel-flat">
