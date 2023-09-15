@@ -15,3 +15,7 @@ exports.dashboardFiles = (req, res, next) =>{
         description: 'dashboard description'     
     });
 };
+
+exports.createNewDoc = (req, res, next) =>{
+    
+}

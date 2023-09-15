@@ -9,4 +9,7 @@ router.get('/index', controller.indexFiles);
 /* GET /dashboard dashboard page. */
 router.get('/dashboard', controller.dashboardFiles);
 
+/* post /index home page. */
+router.get('/index/add-new-doc', controller.createNewDoc);
+
 module.exports = router;
