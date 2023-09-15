@@ -32,7 +32,7 @@
     function getValue() {
         let command_number = document.getElementById("command_number").innerText;
         let command_date = document.getElementById("command_date").innerText;
-        let doc = command_number.concat("-",command_date);
+        let doc = command_number.concat("-",command_date,".pdf");
         document.getElementById("doc").innerHTML = doc;
     }
 </script>
