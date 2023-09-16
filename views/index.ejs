@@ -13,7 +13,8 @@
         <input type="number" id="command_number" class="form-control"/>
         <label for="command_number" class="input-group-text">تاریخ حکم</label>
         <input type="date" id="command_date" class="form-control"/>
-        <input type="file" class="form-control" style="width: 130px;" value="" onclick="getValue()" on id="doc">
+        <label for="document" class="btn btn-info">انتخاب فایل</label>
+        <input type="file" id="document" class="form-control" style="display:none" value="" onclick="getValue()" on id="doc">
     </div>
 
     <div class="input-group mt-2">
@@ -72,42 +73,28 @@
         var temp = $(user).insertBefore('.add');
         temp.prepend(minusButton)
         i++;
+        updateNumbers();
         
 
         $('.fields').on('click', '.delete-field', function(){
             $(this).parent().remove();
+            i--;  // Decrement the counter
+            updateNumbers();
         });
     });
 
     
     
     $('.director').click(function() {
-        var director = `<div class="delete-director position-relative"><div class="input-group mt-2">
+        var director = `<div class="position-relative"><div class="input-group mt-2">
         <label for="father_name" class="input-group-text">ریاست</label>
         <input type="text" id="Last name" class="form-control" />
         <label for="father_name" class="input-group-text">مدیریت</label>
         <input type="text" id="Last name" class="form-control" />
         <label class="input-group-text" for="inputGroupSelect01">هدف</label>
-        <select class="form-select" id="inputGroupSelect01">
-            <option selected>انتخاب...</option>
-            <option value="1">تقرر</option>
-            <option value="2">تبدل</option>
-            <option value="3">انفکاک</option>
-            <option value="4">غیابت</option>
-        </select>
+        <select class="form-select" id="inputGroupSelect01"><option selected>انتخاب...</option><option value="1">تقرر</option><option value="2">تبدل</option><option value="3">انفکاک</option><option value="4">غیابت</option></select>
         <label class="input-group-text" for="inputGroupSelect01">بست</label>
-        <select class="form-select" id="inputGroupSelect01">
-            <option selected>انتخاب...</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="NTA">NTA</option>
-        </select>
+        <select class="form-select" id="inputGroupSelect01"><option selected>انتخاب...</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="NTA">NTA</option></select>
     </div>
     
     <div class="input-group mt-2 position-relative">
@@ -120,13 +107,24 @@
         var temp = $(director).insertBefore('.add');
         temp.prepend(minusButton);
         i++;
+        updateNumbers();
         
         $('.fields').on('click', '.delete-director', function(){
-            $(this).closest('.delete-director').remove();
+            $(this).closest('.position-relative').remove();
+            i--;  // Decrement the counter
+            updateNumbers();
         });
     });
 
+       // Function to update the numbers
+       function updateNumbers() {
+        $('.delete-field, .delete-director').each(function(index, element) {
+            $(element).text(index + 2);  // +2 because starting number is 2
+        });
+    }
+
 </script>
+
 
 
 <!-- /content area -->
