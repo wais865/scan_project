@@ -1,6 +1,6 @@
 <!-- Content area -->
 <div class="content container pt-0 fields">
-  <form action="index/add-new-doc" enctype="multipart/form-data" method="post">
+  <form action="/index/add-new-doc" enctype="multipart/form-data" method="post">
     <div class="input-group">
         <label class="input-group-text" for="inputGroupSelect01">نوعیت اسناد</label>
         <select class="form-select" id="inputGroupSelect01" name="doc_type">
@@ -14,7 +14,7 @@
         <label for="command_number" class="input-group-text">تاریخ حکم</label>
         <input type="date" id="command_date" name="command_date" class="form-control"/>
         <label for="document" class="btn btn-info">انتخاب فایل</label>
-        <input type="file" id="document" class="form-control" style="display:none" value="" onclick="getValue()" on id="doc">
+        <input type="file" id="document" class="form-control" style="display:none" name="doc" value="" onclick="getValue()" on id="doc">
     </div>
 
     <div class="input-group mt-2">

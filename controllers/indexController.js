@@ -1,3 +1,5 @@
+
+
 /* GET /index home page. */
 exports.indexFiles = (req, res, next) =>{
     res.render('index', 
@@ -17,7 +19,6 @@ exports.dashboardFiles = (req, res, next) =>{
 };
 
 exports.createNewDoc = (req, res, next) =>{
-    const request = req.body;
-    console.log(request);
-    res.redirect(index);
+    console.log(req.files);
+    res.send(req.body);
 }
