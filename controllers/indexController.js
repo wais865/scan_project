@@ -17,5 +17,7 @@ exports.dashboardFiles = (req, res, next) =>{
 };
 
 exports.createNewDoc = (req, res, next) =>{
-    
+    const request = req.body;
+    console.log(request);
+    res.redirect(index);
 }

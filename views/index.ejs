@@ -1,29 +1,29 @@
 <!-- Content area -->
 <div class="content container pt-0 fields">
-  <form action="index/add-new-doc" enctype="multipart/form-data">
+  <form action="index/add-new-doc" enctype="multipart/form-data" method="post">
     <div class="input-group">
         <label class="input-group-text" for="inputGroupSelect01">نوعیت اسناد</label>
-        <select class="form-select" id="inputGroupSelect01">
+        <select class="form-select" id="inputGroupSelect01" name="doc_type">
             <option selected>انتخاب...</option>
             <option value="1">پیشنهاد</option>
             <option value="2">مکتوب</option>
             <option value="3">P2</option>
         </select>
         <label for="command_number" class="input-group-text">نمبر حکم</label>
-        <input type="number" id="command_number" class="form-control"/>
+        <input type="number" id="command_number" name="command_number" class="form-control"/>
         <label for="command_number" class="input-group-text">تاریخ حکم</label>
-        <input type="date" id="command_date" class="form-control"/>
+        <input type="date" id="command_date" name="command_date" class="form-control"/>
         <label for="document" class="btn btn-info">انتخاب فایل</label>
         <input type="file" id="document" class="form-control" style="display:none" value="" onclick="getValue()" on id="doc">
     </div>
 
     <div class="input-group mt-2">
         <label for="father_name" class="input-group-text">ریاست</label>
-        <input type="text" id="Last name" class="form-control" />
+        <input type="text" id="Last name" name="directorate" class="form-control" />
         <label for="father_name" class="input-group-text">مدیریت</label>
-        <input type="text" id="Last name" class="form-control" />
+        <input type="text" id="Last name" name="management" class="form-control" />
         <label class="input-group-text" for="inputGroupSelect01">هدف</label>
-        <select class="form-select" id="inputGroupSelect01">
+        <select class="form-select" name="purpose" id="inputGroupSelect01">
             <option selected>انتخاب...</option>
             <option value="1">تقرر</option>
             <option value="2">تبدل</option>
@@ -31,7 +31,7 @@
             <option value="4">غیابت</option>
         </select>
         <label class="input-group-text" for="inputGroupSelect01">بست</label>
-        <select class="form-select" id="inputGroupSelect01">
+        <select class="form-select" name="degree" id="inputGroupSelect01">
             <option selected>انتخاب...</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -48,9 +48,9 @@
     <div class="input-group mt-2 position-relative">
         <span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle">1</span>
         <label for="name" class="input-group-text">نام</label>
-        <input type="text" aria-label="Last name" class="form-control" />
+        <input type="text" name="name" aria-label="Last name" class="form-control" />
         <label for="father_name" class="input-group-text">نام پدر</label>
-        <input type="text" id="father_name" class="form-control" />
+        <input type="text" id="father_name" name="father_name" class="form-control" />
     </div>
 
     <div class="mt-2 add">
