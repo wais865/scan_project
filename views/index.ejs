@@ -61,8 +61,25 @@
         <button type="submit" class="btn btn-success">ذخیره</button>
     </div>
 </form>
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>directorate</th>
+            <th>management</th>
+            <!-- Add other headers -->
+        </tr>
+    </thead>
+    <tfoot>
+    </tfoot>
+</table>
+
+
+
+</div>
 
 <script>
     var i = 2;
@@ -130,6 +147,32 @@
 
 </script>
 
+<script>
+    $(document).ready(function() {
+    let table = $('#myTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/data",
+        columns: [
+            { data: 'directorate' },
+            { data: 'management' },
+            // ... other columns
+        ],
+        initComplete: function() {
+            this.api().columns().every(function() {
+                var column = this;
+                var input = $('<input type="text" placeholder="Search column">')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val).draw();
+                    });
+            });
+        }
+    });
+});
+
+</script>
 
 
 <!-- /content area -->

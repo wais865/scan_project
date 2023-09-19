@@ -14,4 +14,7 @@ router.get('/dashboard', controller.dashboardFiles);
 /* post /index home page add new document. */
 router.post('/index/add-new-doc',controller.createNewDoc);
 
+/* post /search home page document. */
+router.get('/data', controller.searchMethod);
+
 module.exports = router;
