@@ -18,6 +18,14 @@ exports.dashboardFiles = (req, res, next) =>{
     });
 };
 
+exports.documentFiles = (req, res, next) =>{
+    res.render('documents', 
+    {   
+        title: 'document page',
+        description: 'document description'     
+    });
+};
+
 exports.createNewDoc = async (req, res, next) => {
     try{
 
@@ -110,35 +118,35 @@ exports.createNewDoc = async (req, res, next) => {
 
 // ajax and datatable searching
 // route /search
-exports.searchMethod = async (req,res , next) => {
+// exports.searchMethod = async (req,res , next) => {
     
-        let draw = req.query.draw;
-        let start = parseInt(req.query.start);
-        let length = parseInt(req.query.length);
-        let order = req.query.order[0];
-        let searchValue = req.query.search.value;
-        console.log(object);
-        let searchQuery = {};
+//         let draw = req.query.draw;
+//         let start = parseInt(req.query.start);
+//         let length = parseInt(req.query.length);
+//         let order = req.query.order[0];
+//         let searchValue = req.query.search.value;
+//         console.log(object);
+//         let searchQuery = {};
         
-        if (searchValue) {
-            searchQuery['$or'] = [
-                { directorate: new RegExp(searchValue, "i") },
-                { management: new RegExp(searchValue, "i") },
-                // ... Add more fields if you want to search in them
-            ];
-        }
+//         if (searchValue) {
+//             searchQuery['$or'] = [
+//                 { directorate: new RegExp(searchValue, "i") },
+//                 { management: new RegExp(searchValue, "i") },
+//                 // ... Add more fields if you want to search in them
+//             ];
+//         }
         
-        let customers = await Customer.find(searchQuery)
-        .skip(start)
-        .limit(length)
-        .exec();
+//         let customers = await Customer.find(searchQuery)
+//         .skip(start)
+//         .limit(length)
+//         .exec();
         
-        let totalRecords = await Customer.countDocuments();
+//         let totalRecords = await Customer.countDocuments();
         
-        res.json({
-            draw: draw,
-            recordsTotal: totalRecords,
-        recordsFiltered: customers.length,
-        data: customers
-    });
-};
+//         res.json({
+//             draw: draw,
+//             recordsTotal: totalRecords,
+//         recordsFiltered: customers.length,
+//         data: customers
+//     });
+// };

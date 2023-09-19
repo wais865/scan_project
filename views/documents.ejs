@@ -1,0 +1,58 @@
+
+    <table id="example" class="display" style="width:80%">
+        <thead>
+            <tr>
+                <th>directorate</th>
+                <th>management</th>
+                <th>Position</th>
+                <th>purpose</th>
+                <th>degree</th>
+                <th>father_name</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>directorate</th>
+                <th>management</th>
+                <th>Position</th>
+                <th>purpose</th>
+                <th>degree</th>
+                <th>father_name</th>
+            </tr>
+        </tfoot>
+    </table>
+    
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+new DataTable('#example', {
+    ajax: 'scripts/server_processing',
+    processing: true,
+    serverSide: true
+});
+
+
+
+// $(document).ready(function(){
+
+//     var dataTable = $('#customer_data').DataTable({
+//         'processing' : true,
+//         'serverSide' : true,
+//         'serverMethod' : 'get',
+//         'ajax' : {
+//             'url' : '/get_data'
+//         },
+//         'aaSorting' : [],
+//         'columns' : [
+//             { data : 'directorate' },
+//             { data : 'management' },
+//             { data : 'purpose' },
+//             { data : 'degree' },
+//             { data : 'father_name' }
+//         ]
+//     });
+
+// });
+
+</script>
