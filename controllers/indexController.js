@@ -105,3 +105,40 @@ exports.createNewDoc = async (req, res, next) => {
     //     res.status(500).send("Server Error");
     // }
 };
+
+
+
+// ajax and datatable searching
+// route /search
+exports.searchMethod = async (req,res , next) => {
+    
+        let draw = req.query.draw;
+        let start = parseInt(req.query.start);
+        let length = parseInt(req.query.length);
+        let order = req.query.order[0];
+        let searchValue = req.query.search.value;
+        console.log(object);
+        let searchQuery = {};
+        
+        if (searchValue) {
+            searchQuery['$or'] = [
+                { directorate: new RegExp(searchValue, "i") },
+                { management: new RegExp(searchValue, "i") },
+                // ... Add more fields if you want to search in them
+            ];
+        }
+        
+        let customers = await Customer.find(searchQuery)
+        .skip(start)
+        .limit(length)
+        .exec();
+        
+        let totalRecords = await Customer.countDocuments();
+        
+        res.json({
+            draw: draw,
+            recordsTotal: totalRecords,
+        recordsFiltered: customers.length,
+        data: customers
+    });
+};
