@@ -116,6 +116,15 @@ exports.createNewDoc = async (req, res, next) => {
 
 
 
+exports.searchFunc = async (req, res) => {
+    
+};
+
+
+
+
+
+
 // ajax and datatable searching
 // route /search
 // exports.searchMethod = async (req,res , next) => {
