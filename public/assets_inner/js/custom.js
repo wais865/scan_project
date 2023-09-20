@@ -5,7 +5,8 @@
  *  Place here all your custom js. Make sure it's loaded after app.js
  *
  * ---------------------------------------------------------------------------- */
-exports.datatablesForm = () => {
+export function datatablesForm () {
+    console.log("object");
     $(document).ready(function() {
         var table = $('#example').DataTable({
           processing: true,

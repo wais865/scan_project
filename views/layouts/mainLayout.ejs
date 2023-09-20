@@ -11,26 +11,19 @@
 	<link href="assets_outer/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
 	<link href="assets_inner/css/ltr/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
 	<link href="assets_inner/css/rtl/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
+	<link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
 	<script src="assets_outer/demo/demo_configurator.js"></script>
 	<script src="assets_outer/js/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="assets_outer/js/jquery/jquery.min.js"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="assets_outer/js/vendor/visualization/echarts/echarts.min.js"></script>
-	<script src="assets_outer/js/vendor/maps/echarts/world.js"></script>
-
 	<script src="assets_inner/js/app.js"></script>
-	<script src="assets_outer/demo/charts/pages/dashboard_6/area_gradient.js"></script>
-	<script src="assets_outer/demo/charts/pages/dashboard_6/map_europe_effect.js"></script>
-	<script src="assets_outer/demo/charts/pages/dashboard_6/progress_sortable.js"></script>
-	<script src="assets_outer/demo/charts/pages/dashboard_6/bars_grouped.js"></script>
-	<script src="assets_outer/demo/charts/pages/dashboard_6/line_label_marks.js"></script>
+	<script src="assets_outer/js/vendor/tables/datatables/datatables.min.js"></script>
 	<!-- /theme JS files -->
-
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -525,6 +518,10 @@
 		</div>
 	</div>
 	<!-- /demo config -->
-
+	<script type="module" src="../assets_inner/js/custom.js"></script>
+	<script type="module">
+		import {  datatablesForm } from "../assets_inner/js/custom.js";
+		datatablesForm();
+	</script>
 </body>
 </html>

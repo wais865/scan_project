@@ -20,7 +20,7 @@ exports.dashboardFiles = (req, res, next) =>{
 };
 
 exports.documentFiles = (req, res, next) =>{
-    res.render('documents', 
+    res.render('customers', 
     {   
         title: 'document page',
         description: 'document description'     
@@ -126,7 +126,7 @@ exports.searchFunc = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     /* end error handling */
-
+    
     let query = {};
     // general search
     let searchValue = req.query.search && req.query.search.value;
