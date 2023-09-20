@@ -115,9 +115,11 @@ exports.createNewDoc = async (req, res, next) => {
 };
 
 
-
+/* GET /api/customers search using ajax. */
+// search Methods usnig ajax request
+// paginations and return search results
 exports.searchFunc = async (req, res) => {
-    
+
 };
 
 

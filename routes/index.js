@@ -16,7 +16,8 @@ router.get('/document-list', controller.documentFiles);
 /* post /index home page add new document. */
 router.post('/index/add-new-doc',controller.createNewDoc);
 
-/* post /search home page document. */
+/* GET /api/customers search using ajax. */
+// search Methods usnig ajax request
 router.get('/api/customers', controller.searchFunc);
 
 module.exports = router;
