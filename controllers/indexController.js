@@ -149,6 +149,22 @@ exports.searchFunc = async (req, res) => {
     }
     
     // ... repeat for other columns
+    
+    
+    // Sorting
+    const sortQuery = {};
+    const sortColumnIndex = req.query.order?.[0]?.column;
+    const sortDirection = req.query.order?.[0]?.dir;
+    const columns = req.query.columns;
+    
+    
+    if (sortColumnIndex && sortDirection && columns) {
+        // Get the column name from the DataTables request
+        const columnName = columns[sortColumnIndex].data;
+        sortQuery[columnName] = sortDirection === 'asc' ? 1 : -1;
+    }
+
+
 
     
 };
