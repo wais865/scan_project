@@ -137,6 +137,20 @@ exports.searchFunc = async (req, res) => {
           // ... Add other fields you want to search by as well
       ];
     }
+
+    // Check if a search value is present for the 'name' column
+    if (req.query.columns[0].search.value) {
+        query.name = { $regex: req.query.columns[0].search.value, $options: 'i' };
+    }
+    
+    // Check if a search value is present for the 'father_name' column
+    if (req.query.columns[1].search.value) {
+        query.father_name = { $regex: req.query.columns[1].search.value, $options: 'i' };
+    }
+    
+    // ... repeat for other columns
+
+    
 };
 
 
