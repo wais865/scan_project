@@ -2,6 +2,7 @@ var express = require('express');
 // const multer = require('multer');
 var router = express.Router();
 // const upload = multer();
+const validation = require('../configs/validations');
 
 const controller = require('../controllers/indexController');
 
@@ -18,6 +19,6 @@ router.post('/index/add-new-doc',controller.createNewDoc);
 
 /* GET /api/customers search using ajax. */
 // search Methods usnig ajax request
-router.get('/api/customers', controller.searchFunc);
+router.get('/api/customers',validation.validate, controller.searchFunc);
 
 module.exports = router;
