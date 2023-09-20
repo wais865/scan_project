@@ -1,3 +1,4 @@
+const expressValidator  = require('express-validator');
 const {DocumentModel , Customer} = require('../models/customerModel');
 
 /* GET /index home page. */
@@ -119,7 +120,10 @@ exports.createNewDoc = async (req, res, next) => {
 // search Methods usnig ajax request
 // paginations and return search results
 exports.searchFunc = async (req, res) => {
-
+    const errors = expressValidator.validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 };
 
 
