@@ -120,9 +120,22 @@ exports.createNewDoc = async (req, res, next) => {
 // search Methods usnig ajax request
 // paginations and return search results
 exports.searchFunc = async (req, res) => {
+    /* error handling */
     const errors = expressValidator.validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
+    }
+    /* end error handling */
+
+    let query = {};
+    // general search
+    let searchValue = req.query.search && req.query.search.value;
+    if (searchValue) {
+      query.$or = [
+          { name: { $regex: searchValue, $options: 'i' } },
+          { father_name: { $regex: searchValue, $options: 'i' } },
+          // ... Add other fields you want to search by as well
+      ];
     }
 };
 

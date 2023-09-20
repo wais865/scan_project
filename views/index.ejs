@@ -147,32 +147,7 @@
 
 </script>
 
-<script>
-    $(document).ready(function() {
-    let table = $('#myTable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "/data",
-        columns: [
-            { data: 'directorate' },
-            { data: 'management' },
-            // ... other columns
-        ],
-        initComplete: function() {
-            this.api().columns().every(function() {
-                var column = this;
-                var input = $('<input type="text" placeholder="Search column">')
-                    .appendTo($(column.footer()).empty())
-                    .on('change', function() {
-                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                        column.search(val).draw();
-                    });
-            });
-        }
-    });
-});
 
-</script>
 
 
 <!-- /content area -->
