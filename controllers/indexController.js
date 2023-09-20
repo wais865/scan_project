@@ -137,7 +137,7 @@ exports.searchFunc = async (req, res) => {
           // ... Add other fields you want to search by as well
       ];
     }
-
+    
     // Check if a search value is present for the 'name' column
     if (req.query.columns[0].search.value) {
         query.name = { $regex: req.query.columns[0].search.value, $options: 'i' };
@@ -163,9 +163,37 @@ exports.searchFunc = async (req, res) => {
         const columnName = columns[sortColumnIndex].data;
         sortQuery[columnName] = sortDirection === 'asc' ? 1 : -1;
     }
-
-
-
+    
+    // Pagination
+    const start = parseInt(req.query.start || 0);
+    const length = parseInt(req.query.length || 10); // Default to 10 if length is not specified
+    
+    let customers;
+    let recordsFiltered;
+    try {
+        customers = await Customer.find(query)
+        .sort(sortQuery)
+        .skip(start)
+        .limit(length)
+        .populate('document')
+        .exec();
+        
+        recordsFiltered = await Customer.find(query).countDocuments();
+    } catch (err) {
+        return res.status(500).json({ error: 'Database error' });
+    }
+    
+    const recordsTotal = totalRecordsCache || await Customer.countDocuments();
+    if (!totalRecordsCache) totalRecordsCache = recordsTotal;
+    
+    res.json({
+        draw: req.query.draw,
+        recordsTotal,
+        recordsFiltered,
+        data: customers
+    });
+    
+        
     
 };
 
