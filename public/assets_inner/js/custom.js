@@ -12,6 +12,7 @@ export function datatablesForm () {
           processing: true,
           serverSide: true,
           ajax: "/api/customers",  // API endpoint to fetch data
+          order:[],
           columns: [
               { data: 'name' ,defaultContent : ""},
               { data: 'father_name' ,defaultContent : ""},
