@@ -119,6 +119,7 @@ exports.createNewDoc = async (req, res, next) => {
 /* GET /api/customers search using ajax. */
 // search Methods usnig ajax request
 // paginations and return search results
+let totalRecordsCache;
 exports.searchFunc = async (req, res) => {
     /* error handling */
     const errors = expressValidator.validationResult(req);

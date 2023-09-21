@@ -19,9 +19,13 @@ export function datatablesForm () {
                 { data: 'management' ,defaultContent : ""},
                 { data: 'document.command_date' ,defaultContent : ""},
                 { data: 'purpose' ,defaultContent : ""}
+            ],
+            dom: 'Bfrtip',  // Add this line to control where the buttons appear
+            buttons: [
+                'copy', 'excel', 'pdf'
             ]
         });
-
+        
         // Debouncing function for decreaseing server load on every key change
     const debounce = (func, delay) => {
         let debounceTimer;
