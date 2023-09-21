@@ -6,7 +6,7 @@
  *
  * ---------------------------------------------------------------------------- */
 export function datatablesForm () {
-    console.log("object");
+    
     $(document).ready(function() {
         var table = $('#example').DataTable({
           processing: true,
@@ -44,4 +44,6 @@ export function datatablesForm () {
                 .draw();
         },300)); //300ms delay instead of every change packet send to server in every 300ms send one packet
     });
+
+
 }
