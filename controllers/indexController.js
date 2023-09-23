@@ -162,7 +162,7 @@ exports.searchFunc = async (req, res) => {
     if (sortColumnIndex && sortDirection && columns) {
         // Get the column name from the DataTables request
         const columnName = columns[sortColumnIndex].data;
-        sortQuery[columnName] = sortDirection === 'asc' ? 1 : -1;
+        sortQuery[columnName] = sortDirection === 'asc' ? -1 : 1;
     }
     
     // Pagination
@@ -187,6 +187,8 @@ exports.searchFunc = async (req, res) => {
     const recordsTotal = totalRecordsCache || await Customer.countDocuments();
     if (!totalRecordsCache) totalRecordsCache = recordsTotal;
     
+    console.log(customers);
+
     res.json({
         draw: req.query.draw,
         recordsTotal,

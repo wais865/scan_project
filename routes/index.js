@@ -11,6 +11,7 @@ router.get('/index', controller.indexFiles);
 
 /* GET /dashboard dashboard page. */
 router.get('/dashboard', controller.dashboardFiles);
+
 /* GET /dashboard dashboard page. */
 router.get('/document-list', controller.documentFiles);
 

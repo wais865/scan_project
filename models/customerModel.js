@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Define the Document schema
 const documentSchema = new mongoose.Schema({
-    name: String,
+    doc_path: String,
     doc_type: String,
     command_number: String,
     command_date: Date
