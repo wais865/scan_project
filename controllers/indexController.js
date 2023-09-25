@@ -1,5 +1,7 @@
 const expressValidator  = require('express-validator');
 const {DocumentModel , Customer} = require('../models/customerModel');
+const sharp = require('sharp');
+const shortId = require('shortid');
 
 /* GET /index home page. */
 exports.indexFiles = (req, res, next) =>{
@@ -10,7 +12,7 @@ exports.indexFiles = (req, res, next) =>{
     });
 };
 
-//* GET /dashboard dashboard page. */
+/* GET /dashboard dashboard page. */
 exports.dashboardFiles = (req, res, next) =>{
     res.render('dashboard', 
     {   
@@ -31,14 +33,20 @@ exports.createNewDoc = async (req, res, next) => {
     try{
 
         const storeData = async (req) => {
-            // ? uploading documents
-            let photo = req.files ? req.files : {};
-
-
-            req.body = {...req.files,...req.body};
+            //?---------uploading photo-----------------------------------------
+            let photo = req.files ? req.files.doc : {};
+            req.body = {...photo,...req.body};
+            const photoName = `${shortId.generate()}_${photo.name}`;
+            const UploadPath = `./uploads/${photoName}`;
+            //?--------End uploading photo-----------------------------------------
+            //?---------Decrease the size of photo-----------------------------------------
+            await sharp(photo.data).jpeg({ quality: 50 }).toFile(UploadPath).catch((err) => {
+                console.log(err);
+            })
+            //?---------End Decrease the size of photo--------------------------------------
             // First, save the document
             const docData = {
-                name: req.body.doc.name,
+                path: UploadPath,
                 doc_type: req.body.doc_type,
                 command_number: req.body.command_number,
                 command_date: new Date(req.body.command_date)
@@ -82,41 +90,6 @@ exports.createNewDoc = async (req, res, next) => {
     }catch(error) {
         res.status(500).send("error in creating customer");
     }
-    // const request = {...req.files,...req.body};
-    // console.log(req.body);
-    // res.send(request);
-    // try {
-    //     let previousUser = {};
-    //     const usersData = [];
-        
-    //     for (let key in req.body) {
-    //         if (key.startsWith("users")) {
-    //             const [, index, field] = key.match(/^users\[(\d+)\]\[(\w+)\]$/);
-                
-    //             if (!usersData[index]) {
-    //                 usersData[index] = {};
-    //             }
-                
-    //             // If the current user has the field, set it and update the previousUser value.
-    //             // If not, use the previous user's value.
-    //             if (req.body[key]) {
-    //                 usersData[index][field] = req.body[key];
-    //                 previousUser[field] = req.body[key];
-    //             } else {
-    //                 usersData[index][field] = previousUser[field];
-    //             }
-    //         }
-    //     }
-        
-    //     // Now, save all the users to the database
-    //     await User.insertMany(usersData);
-        
-    //     res.send("Users saved successfully!");
-
-    // } catch (error) {
-    //     console.error("Error saving users:", error);
-    //     res.status(500).send("Server Error");
-    // }
 };
 
 
