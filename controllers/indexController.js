@@ -10,7 +10,7 @@ exports.indexFiles = (req, res, next) =>{
     });
 };
 
-/* GET /dashboard dashboard page. */
+//* GET /dashboard dashboard page. */
 exports.dashboardFiles = (req, res, next) =>{
     res.render('dashboard', 
     {   
@@ -31,6 +31,10 @@ exports.createNewDoc = async (req, res, next) => {
     try{
 
         const storeData = async (req) => {
+            // ? uploading documents
+            let photo = req.files ? req.files : {};
+
+
             req.body = {...req.files,...req.body};
             // First, save the document
             const docData = {
