@@ -112,6 +112,11 @@ exports.searchFunc = async (req, res) => {
       query.$or = [
           { name: { $regex: searchValue, $options: 'i' } },
           { father_name: { $regex: searchValue, $options: 'i' } },
+          { degree: { $regex: searchValue, $options: 'i' } },
+          { management: { $regex: searchValue, $options: 'i' } },
+          { command_date: { $regex: searchValue, $options: 'i' } },
+          { purpose: { $regex: searchValue, $options: 'i' } },
+          { purpose: { $regex: searchValue, $options: 'i' } },
           // ... Add other fields you want to search by as well
       ];
     }
@@ -125,6 +130,32 @@ exports.searchFunc = async (req, res) => {
     if (req.query.columns[1].search.value) {
         query.father_name = { $regex: req.query.columns[1].search.value, $options: 'i' };
     }
+    
+    // Check if a search value is present for the 'father_name' column
+    if (req.query.columns[2].search.value) {
+        query.degree = { $regex: req.query.columns[2].search.value, $options: 'i' };
+    }
+    
+    // Check if a search value is present for the 'father_name' column
+    if (req.query.columns[3].search.value) {
+        query.management = { $regex: req.query.columns[3].search.value, $options: 'i' };
+    }
+    
+    // Check if a search value is present for the 'father_name' column
+    if (req.query.columns[4].search.value) {
+        query.command_date = { $regex: req.query.columns[4].search.value, $options: 'i' };
+    }
+    
+    // // Check if a search value is present for the 'father_name' column
+    if (req.query.columns[5].search.value) {
+        query.purpose = { $regex: req.query.columns[5].search.value, $options: 'i' };
+    }
+   
+    
+    // Check if a search value is present for the 'father_name' column
+    // if (req.query.columns[6].search.value) {
+    //     query.purpose = { $regex: req.query.columns[6].search.value, $options: 'i' };
+    // }
     
     // ... repeat for other columns
     
