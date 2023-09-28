@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 
 // Define the Document schema
 const documentSchema = new mongoose.Schema({
@@ -21,6 +22,9 @@ const customerSchema = new mongoose.Schema({
         ref: 'DocumentModel'
     }
 });
+
+
+Customer.plugin(autoIncrement.plugin, { model: 'Customer', field: 'customerAutoID' });
 
 const DocumentModel = mongoose.model('DocumentModel', documentSchema);
 const Customer = mongoose.model('Customer', customerSchema);
