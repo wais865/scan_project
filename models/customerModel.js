@@ -24,7 +24,7 @@ const customerSchema = new mongoose.Schema({
 });
 
 
-Customer.plugin(autoIncrement.plugin, { model: 'Customer', field: 'customerAutoID' });
+customerSchema.plugin(autoIncrement.plugin, { model: 'Customer', field: 'customerAutoID' });
 
 const DocumentModel = mongoose.model('DocumentModel', documentSchema);
 const Customer = mongoose.model('Customer', customerSchema);
