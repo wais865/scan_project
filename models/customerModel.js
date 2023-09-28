@@ -5,7 +5,7 @@ const documentSchema = new mongoose.Schema({
     doc_path: String,
     doc_type: String,
     command_number: String,
-    command_date: Date
+    command_date: String
 });
 
 // Define the Customer schema with a reference to the Document schema

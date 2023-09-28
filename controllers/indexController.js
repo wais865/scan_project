@@ -2,6 +2,8 @@ const expressValidator  = require('express-validator');
 const {DocumentModel , Customer} = require('../models/customerModel');
 const sharp = require('sharp');
 const shortId = require('shortid');
+const moment = require('moment');
+
 
 /* GET /index home page. */
 exports.indexFiles = (req, res, next) =>{
@@ -45,11 +47,12 @@ exports.createNewDoc = async (req, res, next) => {
             })
             //?---------End Decrease the size of photo--------------------------------------
             // First, save the document
+ 
             const docData = {
                 path: UploadPath,
                 doc_type: req.body.doc_type,
                 command_number: req.body.command_number,
-                command_date: new Date(req.body.command_date)
+                command_date: moment(new Date(req.body.command_date)).format('MM-DD-YYYY')
             };
             
             const document = await new DocumentModel(docData).save();
@@ -114,8 +117,7 @@ exports.searchFunc = async (req, res) => {
           { father_name: { $regex: searchValue, $options: 'i' } },
           { degree: { $regex: searchValue, $options: 'i' } },
           { management: { $regex: searchValue, $options: 'i' } },
-          { command_date: { $regex: searchValue, $options: 'i' } },
-          { purpose: { $regex: searchValue, $options: 'i' } },
+          { document:{command_date: { $regex: searchValue, $options: 'i' } }},
           { purpose: { $regex: searchValue, $options: 'i' } },
           // ... Add other fields you want to search by as well
       ];
@@ -150,18 +152,12 @@ exports.searchFunc = async (req, res) => {
     if (req.query.columns[5].search.value) {
         query.purpose = { $regex: req.query.columns[5].search.value, $options: 'i' };
     }
-   
-    
-    // Check if a search value is present for the 'father_name' column
-    // if (req.query.columns[6].search.value) {
-    //     query.purpose = { $regex: req.query.columns[6].search.value, $options: 'i' };
-    // }
     
     // ... repeat for other columns
     
     
     // Sorting
-    const sortQuery = {};
+    const sortQuery = { name : -1};
     const sortColumnIndex = req.query.order?.[0]?.column;
     const sortDirection = req.query.order?.[0]?.dir;
     const columns = req.query.columns;
@@ -171,6 +167,7 @@ exports.searchFunc = async (req, res) => {
         // Get the column name from the DataTables request
         const columnName = columns[sortColumnIndex].data;
         sortQuery[columnName] = sortDirection === 'asc' ? -1 : 1;
+        console.log("sortQuery: " + sortQuery,"sortColumnIndex: " + sortColumnIndex,"sortDirection: "+sortDirection,"column: "+columns);
     }
     
     // Pagination
@@ -195,7 +192,6 @@ exports.searchFunc = async (req, res) => {
     const recordsTotal = totalRecordsCache || await Customer.countDocuments();
     if (!totalRecordsCache) totalRecordsCache = recordsTotal;
     
-    console.log(customers);
 
     res.json({
         draw: req.query.draw,
