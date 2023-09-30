@@ -18,7 +18,6 @@ const customerSchema = new mongoose.Schema({
     degree: String,
     name: String,
     father_name: String,
-    sequence_value:Number,
     document: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'DocumentModel'

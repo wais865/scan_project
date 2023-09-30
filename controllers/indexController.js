@@ -137,9 +137,10 @@ exports.searchFunc = async (req, res) => {
         0: 'name',
         1: 'father_name',
         2: 'degree',
-        3: 'management',
+        3: 'directorate',
+        4: 'management',
         // 4 will be handled separately due to the reference
-        6: 'purpose'
+        7: 'purpose'
     };
     
     for (let columnIndex in columnMap) {
@@ -153,8 +154,8 @@ exports.searchFunc = async (req, res) => {
     // Handle document.command_number separately
     let docQuery = {};
     const documentColumnMap = {
-        4: 'command_date',
-        5: 'command_number'
+        5: 'command_date',
+        6: 'command_number'
     };
     
     for (let columnIndex in documentColumnMap) {
