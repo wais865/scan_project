@@ -123,3 +123,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+// https://www.tutorialspoint.com/mongodb/mongodb_autoincrement_sequence.htm
+// https://www.mongodb.com/basics/mongodb-auto-increment
+// https://data-flair.training/blogs/mongodb-auto-increment-sequence/
