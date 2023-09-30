@@ -32,12 +32,20 @@ exports.documentFiles = (req, res, next) =>{
 };
 
 exports.createNewDoc = async (req, res, next) => {
-    try{
+    try{ //? function is created for creating auto increment field in database
+        function getNextSequenceValue(sequenceName){
+            var sequenceDocument = db.DocumentModel.findAndModify({
+               query:{_id: sequenceName },
+               update: {$inc:{sequence_value:1}},
+               new:true
+            });
+            return sequenceDocument.sequence_value;
+         }
 
         const storeData = async (req) => {
             //?---------uploading photo-----------------------------------------
             let photo = req.files ? req.files.doc : {};
-            req.body = {...photo,...req.body};
+            req.body = {...photo,...req.body,...{uniqueId:getNextSequenceValue("productid")}};
             const photoName = `${shortId.generate()}_${photo.name}`;
             const UploadPath = `./uploads/${photoName}`;
             //?--------End uploading photo-----------------------------------------
@@ -204,42 +212,3 @@ exports.searchFunc = async (req, res) => {
     
 };
 
-
-
-
-
-
-// ajax and datatable searching
-// route /search
-// exports.searchMethod = async (req,res , next) => {
-    
-//         let draw = req.query.draw;
-//         let start = parseInt(req.query.start);
-//         let length = parseInt(req.query.length);
-//         let order = req.query.order[0];
-//         let searchValue = req.query.search.value;
-//         console.log(object);
-//         let searchQuery = {};
-        
-//         if (searchValue) {
-//             searchQuery['$or'] = [
-//                 { directorate: new RegExp(searchValue, "i") },
-//                 { management: new RegExp(searchValue, "i") },
-//                 // ... Add more fields if you want to search in them
-//             ];
-//         }
-        
-//         let customers = await Customer.find(searchQuery)
-//         .skip(start)
-//         .limit(length)
-//         .exec();
-        
-//         let totalRecords = await Customer.countDocuments();
-        
-//         res.json({
-//             draw: draw,
-//             recordsTotal: totalRecords,
-//         recordsFiltered: customers.length,
-//         data: customers
-//     });
-// };
