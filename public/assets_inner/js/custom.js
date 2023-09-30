@@ -18,6 +18,7 @@ export function datatablesForm () {
               { data: 'father_name' ,defaultContent : ""},
               { data: 'degree' ,defaultContent : ""},
               { data: 'management' ,defaultContent : ""},
+              { data: 'document.command_number' ,defaultContent : ""},
               { data: 'document.command_date' ,defaultContent : ""},
               { data: 'purpose' ,defaultContent : ""}
           ],
@@ -47,4 +48,27 @@ export function datatablesForm () {
     });
 
 
+}
+
+export function changeValue() {
+    const valueMap = {
+        "1": "manager",
+        "2": "director",
+        "3": "director",
+        // ... other mappings ...
+    };
+
+    const rows = document.querySelectorAll("#example tbody tr");
+
+    rows.forEach(row => {
+        const td = row.querySelector("td:nth-child(7)");
+        
+        if (td) {
+            console.log(td.textContent.trim()); // Note the use of trim()
+
+            if (valueMap[td.textContent.trim()]) {
+                td.textContent = valueMap[td.textContent.trim()];
+            }
+        }
+    });
 }

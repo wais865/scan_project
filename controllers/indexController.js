@@ -125,47 +125,60 @@ exports.searchFunc = async (req, res) => {
           { father_name: { $regex: searchValue, $options: 'i' } },
           { degree: { $regex: searchValue, $options: 'i' } },
           { management: { $regex: searchValue, $options: 'i' } },
+          { document:{command_number: { $regex: searchValue, $options: 'i' } }},
           { document:{command_date: { $regex: searchValue, $options: 'i' } }},
           { purpose: { $regex: searchValue, $options: 'i' } },
           // ... Add other fields you want to search by as well
       ];
     }
     
-    // Check if a search value is present for the 'name' column
-    if (req.query.columns[0].search.value) {
-        query.name = { $regex: req.query.columns[0].search.value, $options: 'i' };
+
+    const columnMap = {
+        0: 'name',
+        1: 'father_name',
+        2: 'degree',
+        3: 'management',
+        // 4 will be handled separately due to the reference
+        6: 'purpose'
+    };
+    
+    for (let columnIndex in columnMap) {
+        const searchValue = req.query.columns[columnIndex].search.value;
+        if (searchValue) {
+            query[columnMap[columnIndex]] = { $regex: searchValue, $options: 'i' };
+        }
     }
     
-    // Check if a search value is present for the 'father_name' column
-    if (req.query.columns[1].search.value) {
-        query.father_name = { $regex: req.query.columns[1].search.value, $options: 'i' };
+    // Handle document.command_date separately
+    // Handle document.command_number separately
+    let docQuery = {};
+    const documentColumnMap = {
+        4: 'command_date',
+        5: 'command_number'
+    };
+    
+    for (let columnIndex in documentColumnMap) {
+        const searchValue = req.query.columns[columnIndex].search.value;
+        if (searchValue) {
+            docQuery[documentColumnMap[columnIndex]] = { $regex: searchValue, $options: 'i' };
+        }
     }
     
-    // Check if a search value is present for the 'father_name' column
-    if (req.query.columns[2].search.value) {
-        query.degree = { $regex: req.query.columns[2].search.value, $options: 'i' };
+    if (Object.keys(docQuery).length > 0) {
+        try {
+            const matchingDocuments = await DocumentModel.find(docQuery);
+            const matchingDocumentIds = matchingDocuments.map(doc => doc._id);
+            query.document = { $in: matchingDocumentIds };
+        } catch (err) {
+            console.error("Error querying DocumentModel", err);
+            return res.status(500).json({ error: 'Database error querying documents' });
+        }
     }
     
-    // Check if a search value is present for the 'father_name' column
-    if (req.query.columns[3].search.value) {
-        query.management = { $regex: req.query.columns[3].search.value, $options: 'i' };
-    }
-    
-    // Check if a search value is present for the 'father_name' column
-    if (req.query.columns[4].search.value) {
-        query.command_date = { $regex: req.query.columns[4].search.value, $options: 'i' };
-    }
-    
-    // // Check if a search value is present for the 'father_name' column
-    if (req.query.columns[5].search.value) {
-        query.purpose = { $regex: req.query.columns[5].search.value, $options: 'i' };
-    }
-    
-    // ... repeat for other columns
     
     
     // Sorting
-    const sortQuery = { name : -1};
+    let sortQuery = {};
     const sortColumnIndex = req.query.order?.[0]?.column;
     const sortDirection = req.query.order?.[0]?.dir;
     const columns = req.query.columns;
@@ -174,8 +187,9 @@ exports.searchFunc = async (req, res) => {
     if (sortColumnIndex && sortDirection && columns) {
         // Get the column name from the DataTables request
         const columnName = columns[sortColumnIndex].data;
-        sortQuery[columnName] = sortDirection === 'asc' ? -1 : 1;
-        console.log("sortQuery: " + sortQuery,"sortColumnIndex: " + sortColumnIndex,"sortDirection: "+sortDirection,"column: "+columns);
+        sortQuery[columnName] = sortDirection === 'asc' ? 1 : -1;
+    }else{
+        sortQuery = { _id : -1};
     }
     
     // Pagination

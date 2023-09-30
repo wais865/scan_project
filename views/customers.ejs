@@ -1,12 +1,10 @@
 <div class="container">
-
     <div class="card">
         <div class="card-header">
             <h5 class="mb-0">لیست پیشنهادات که منظور شده است</h5>
         </div>
         
-        <div class="card-body">
-            
+        <div class="card-body">            
             <div class="datatable-scroll">
                 <table id="example" class="display table datatable-column-search-inputs dataTable no-footer" style="width:95%">
                     <thead>
@@ -15,7 +13,8 @@
                             <th><input type="text" class="form-control" placeholder="جستجو با پدر" /></th>
                             <th><input type="text" class="form-control" placeholder="جستجو با بست" /></th>
                             <th><input type="text" class="form-control" placeholder="جستجو با مدیریت" /></th>
-                            <th><input type="text" class="form-control" placeholder="جستجو با حکم" /></th>
+                            <th><input type="text" class="form-control" placeholder="جستجو با نمبر حکم" /></th>
+                            <th><input type="text" class="form-control" placeholder="جستجو با تاریخ حکم" /></th>
                             <th><input type="text" class="form-control" placeholder="جستجو با نوع اسناد" /></th>
                         </tr>
                         <tr>
@@ -23,6 +22,7 @@
                             <th>پدر</th>
                             <th>بست</th>
                             <th>مدیریت</th>
+                            <th>نمبر حکم</th>
                             <th>تاریخ حکم</th>
                             <th>نوع اسناد</th>
                         </tr>
@@ -32,9 +32,13 @@
                 
         </div>
     </div>
-    <!-- ... -->
 </div>
         
 
 
-</div>
+<script type="module" src="../assets_inner/js/custom.js"></script>
+<script type="module">
+    import {  datatablesForm , changeValue } from "../assets_inner/js/custom.js";
+    datatablesForm();
+    changeValue();
+</script>
