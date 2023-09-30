@@ -127,6 +127,7 @@ exports.searchFunc = async (req, res) => {
           { management: { $regex: searchValue, $options: 'i' } },
           { document:{command_number: { $regex: searchValue, $options: 'i' } }},
           { document:{command_date: { $regex: searchValue, $options: 'i' } }},
+          { document:{doc_type: { $regex: searchValue, $options: 'i' } }},
           { purpose: { $regex: searchValue, $options: 'i' } },
           // ... Add other fields you want to search by as well
       ];
@@ -140,7 +141,7 @@ exports.searchFunc = async (req, res) => {
         3: 'directorate',
         4: 'management',
         // 4 will be handled separately due to the reference
-        7: 'purpose'
+        8: 'purpose'
     };
     
     for (let columnIndex in columnMap) {
@@ -155,7 +156,8 @@ exports.searchFunc = async (req, res) => {
     let docQuery = {};
     const documentColumnMap = {
         5: 'command_date',
-        6: 'command_number'
+        6: 'command_number',
+        7: 'doc_type'
     };
     
     for (let columnIndex in documentColumnMap) {

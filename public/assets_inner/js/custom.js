@@ -21,6 +21,7 @@ export function datatablesForm () {
               { data: 'management' ,defaultContent : ""},
               { data: 'document.command_number' ,defaultContent : ""},
               { data: 'document.command_date' ,defaultContent : ""},
+              { data: 'document.doc_type' ,defaultContent : ""},
               { data: 'purpose' ,defaultContent : ""}
           ],
           dom: 'Bfrtip',  // Add this line to control where the buttons appear
