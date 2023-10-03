@@ -47,7 +47,7 @@
       </div>
       
       <div class="input-group mt-2 position-relative">
-          <span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle">1</span>
+          <span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle"><span class="number-span">1</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png" style="display:none;width: 20px;height: 25px;"></span>
           <label for="name" class="input-group-text">نام</label>
           <input type="text" name="users[1][name]" class="form-control" />
           <label for="father_name" class="input-group-text">نام پدر</label>
@@ -65,10 +65,28 @@
     
 </div>
 
-
-
-
 <script>
+// Handle the hover event using event delegation
+document.querySelector('.fields').addEventListener('mouseover', handleHoverEvent, true);
+document.querySelector('.fields').addEventListener('mouseout', handleHoverEvent, true);
+
+function handleHoverEvent(event) {
+    const outerSpan = event.target.closest('.position-absolute');
+    if (outerSpan) {
+        const trashIcon = outerSpan.querySelector('.trash-icon');
+        const numberSpan = outerSpan.querySelector('.number-span');
+        if (trashIcon && numberSpan) {
+            if (event.type === 'mouseover') {
+                trashIcon.style.display = 'block';
+                numberSpan.style.display = 'none';
+            } else if (event.type === 'mouseout') {
+                trashIcon.style.display = 'none';
+                numberSpan.style.display = 'block';
+            }
+        }
+    }
+}
+
     var i = 2;
     
     $('.user').click(function() {
@@ -78,7 +96,7 @@
                         <label for="father_name" name="users[${i}][father_name]" class="input-group-text">نام پدر</label>
                         <input type="text" id="father_name" class="form-control" />
                     </div>`;
-        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-field">${i}</span>`;
+        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-field"><span class="number-span">${i}</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png" style="display:none;width: 20px;height: 25px;"></span>`;
         var temp = $(user).insertBefore('.add');
         temp.prepend(minusButton)
         i++;
@@ -112,7 +130,7 @@
         <label for="father_name" class="input-group-text">نام پدر</label>
         <input type="text" name="users[${i}][father_name]" id="father_name" class="form-control" />
     </div></div>`;
-        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-director">${i}</span>`;
+        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-director"><span class="number-span">${i}</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png" style="display:none;width: 20px;height: 25px;"></span>`;
         var temp = $(director).insertBefore('.add');
         temp.prepend(minusButton);
         i++;
