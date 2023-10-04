@@ -47,7 +47,7 @@
       </div>
       
       <div class="input-group mt-2 position-relative">
-          <span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle"><span class="number-span">1</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png" style="display:none;width: 20px;height: 25px;"></span>
+          <span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle"><span class="number-span">1</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png"></span>
           <label for="name" class="input-group-text">نام</label>
           <input type="text" name="users[1][name]" class="form-control" />
           <label for="father_name" class="input-group-text">نام پدر</label>
@@ -67,6 +67,7 @@
 
 <script>
 // Handle the hover event using event delegation
+/*
 document.querySelector('.fields').addEventListener('mouseover', handleHoverEvent, true);
 document.querySelector('.fields').addEventListener('mouseout', handleHoverEvent, true);
 
@@ -86,6 +87,7 @@ function handleHoverEvent(event) {
         }
     }
 }
+*/
 
     var i = 2;
     
@@ -96,7 +98,8 @@ function handleHoverEvent(event) {
                         <label for="father_name" name="users[${i}][father_name]" class="input-group-text">نام پدر</label>
                         <input type="text" id="father_name" class="form-control" />
                     </div>`;
-        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-field"><span class="number-span">${i}</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png" style="display:none;width: 20px;height: 25px;"></span>`;
+        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-field"><span class="number-span">${i}</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png"></span>`;
+                      
         var temp = $(user).insertBefore('.add');
         temp.prepend(minusButton)
         i++;
@@ -130,7 +133,7 @@ function handleHoverEvent(event) {
         <label for="father_name" class="input-group-text">نام پدر</label>
         <input type="text" name="users[${i}][father_name]" id="father_name" class="form-control" />
     </div></div>`;
-        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-director"><span class="number-span">${i}</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png" style="display:none;width: 20px;height: 25px;"></span>`;
+        minusButton = `<span class="position-absolute top-50 end-100 translate-middle px-2 py-1 btn btn-outline-danger rounded-circle delete-director"><span class="number-span">${i}</span><img class="trash-icon" src="assets_outer/images/icons/icons8-trash-35.png"></span>`;
         var temp = $(director).insertBefore('.add');
         temp.prepend(minusButton);
         i++;

@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+.trash-icon{
+  display:none;
+  width:20px;
+  height:25px;
+}
+
+.position-absolute:hover .trash-icon {
+  display: block !important;
+}
+.position-absolute:hover .number-span {
+  display: none !important;
+}
+
+
